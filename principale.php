@@ -8,7 +8,7 @@
     <form action="login.php " method="POST">
         <div id="content">
             
-            <a href='login.php' name="deconnexion"><span>Déconnexion</span></a>
+            <a href='principale.php?deconnexion=true' name="deconnexion"><span>Déconnexion</span></a>
             
 
             <?php
@@ -17,12 +17,14 @@
                 { 
                    if($_POST['deconnexion']==true)
                    {  
-                      session_unset();
+                      session_destroy();
                       header("location:login.php");
+                      exit;
                    }
                 }
                 else if($_SESSION['id'] !== ""){
                     $user = $_SESSION['id'];
+                   
                     echo "<br>Bonjour $user, vous êtes connectés";
                 }
             ?>
