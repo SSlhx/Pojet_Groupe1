@@ -1,9 +1,10 @@
 <?php 
-$id = $_POST ['id'];
-$pw = $_POST['pw'];
-   $user = $_SESSION['id'];         
-if(isset( $_SESSION['id'])){
-        session_start();
+ session_start();
+$id = $_SESSION ['id'];
+ $user = $_SESSION['id'];         
+
+   if(isset( $_SESSION['id'])){
+       
    echo "<br>Bonjour $user, vous êtes connectés".$_SESSION["id"]; }
 else{
     header("Location : /login.php");
@@ -16,7 +17,7 @@ else{
         <link rel="stylesheet" href="style.css" media="screen" type="text/css" />
     </head>
     <body style='background:#fff;'>
-    <form action="traitement.php " method="POST">
+    <form action="login.php " method="POST">
         <div id="content">
             
             <a href='logout.php' name="deconnexion"><span>Déconnexion</span></a>
