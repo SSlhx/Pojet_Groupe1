@@ -1,14 +1,20 @@
 <?php 
- session_start();
-$id = $_SESSION ['id'];
- $user = $_SESSION['id'];         
+
+
+
+session_start();
+       if (isset ($_SESSION['id'])){
+        $id = $_SESSION ['id'];
+ $user = $_SESSION['id'];    
+
 
    if(isset( $_SESSION['id'])){
        
-   echo "<br>Bonjour $user, vous êtes connectés".$_SESSION["id"]; }
-else{
-    header("Location : /login.php");
-};
+   echo "<br>Bonjour $user, vous êtes connectés".$_SESSION['id']; }
+       
+
+       
+
 ?>
 <html>
     <head>
@@ -28,4 +34,11 @@ else{
         </div>
     </body>
 </html>
-
+<?php }
+else{
+   
+    session_destroy();
+                      header("location:login.php");
+                      exit;
+};
+?>
