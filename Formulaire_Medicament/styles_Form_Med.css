@@ -1,0 +1,20 @@
+
+
+.Titre h1{
+    text-align: center;
+    justify-content: center;
+}
+
+.form{
+    text-align: center;
+    justify-content: center;
+}
+
+label{
+    padding: auto;
+    align-items: center;
+}
+
+.titre{
+    text-align: center;
+}
