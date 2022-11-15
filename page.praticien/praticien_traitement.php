@@ -13,7 +13,9 @@ if (isset($_POST['nom_pr'],$_POST['prenom_pr'], $_POST['adresse'], $_POST['CP'],
 
     $req = $bdd->prepare('INSERT INTO practiciens (Nom_praticiens, Prenom_praticiens, Adresse_praticiens, CP_praticiens, Ville_praticiens, region_practiciens) VALUES(:a, :b, :c, :d, :e, :f)');
 
-    $req->execute(array('a' => $nom_pr, 'b' => $prenom_pr, 'c' => $adresse, 'd' => $cp, 'e' => $ville, 'f' => $region));
+    $req->execute(array('a' => $nom_pr, 'b' => $prenom_pr, 'c' => $adresse, 'd' => $cp, 'e' => $ville, 'f' => $regionw
+  
+   ));
     header('Location: praticien.php');
   }
 ?>
