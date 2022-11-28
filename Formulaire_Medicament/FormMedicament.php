@@ -9,12 +9,11 @@
 	</style>
 </head>
 <body>
-<div name="haut" class="Titre" style=";margin: 2 2 2 2 ;height:6%;"><h1>Gestion des visites</h1></div>
+<div name="haut" class="Titre" style=";margin: 2 2 2 2 ;height:6%;"><h1>Ajout Médicaments</h1></div>
 
 <div name="droite"	class="form" >
 	<div name="bas" style="margin : 10 2 2 2;clear:left;background-color:77AADD;color:white;height:88%;">
 	<form action="traitement.php" method="POST" >
-		<h1> Pharmacopee </h1>
 		<label class="titre">DEPOT LEGAL :</label><input type="text" size="10" name="MED_DEPOTLEGAL" class="zone" /></br>
 		<label class="titre">NOM COMMERCIAL :</label><input type="text" size="25" name="MED_NOMCOMMERCIAL" class="zone" /></br>
 		<label class="titre">NUM COMMERCIAL :</label><input type="text"	size="25"	name="MED_NUMCOMMERCIAL" class="zone" /> </br>
