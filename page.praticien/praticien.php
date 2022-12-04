@@ -65,6 +65,11 @@
         <option value="Pays de la Loire">Pays de la Loire</option>
         <option value="Provence-Alpes-Côte d’Azur">Provence-Alpes-Côte d’Azur</option>
 			</select>	
+      <label for="">visiteur:</label><br/>
+      <select name="visiteur" id="">
+        <option class="text-center">Choisissez le visiteur relier au practicien</option>
+        
+      </select>
       <input class="submit" type="submit" name="submit">
     </div>
     
