@@ -153,7 +153,15 @@ if(isset( $_SESSION['id'])){
 					<div name="bas" style="background-color:#456BD9;color:white;">
 						<form name="compterendu" method="post" action="traitement_CR.php?id=<?php echo $data; ?>">
 							<h1> Rapport de visite </h1>
-							<label class="titre">PRATICIEN :</label><input type="text"  name="PRAT_NOM" class="zone" required ></input></br>
+							<label class="titre">PRATICIEN :</label>
+                            <select name="activity" id="pet-select">
+                                            <option value="">Veuillez choisir le practicien</option>
+                                            <?php $nom = $con->query("SELECT * FROM practiciens");
+
+                                            while ($data = $nom->fetch()) { ?>
+                                                <option value="<?php echo $data['Nom_praticiens']; ?>"><?php echo $data['Nom_praticiens']; ?>, <?php echo  $data['Prenom_praticiens']; ?></option>
+                                            <?php } ?>
+                                        </select></br>
 							<label class="titre">DATE :</label><input type="date" name="RAP_DATE" value="2022-12-05" required /></br>
 							<label class="titre">MOTIF :</label><select  name="RAP_MOTIF" class="zone"required ></br>
 															<option value="PRD">Périodicité</option>
