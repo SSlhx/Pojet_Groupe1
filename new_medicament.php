@@ -158,41 +158,16 @@ if ($type == "responsable" or  $type == "delegue") { ?>
 			<div id="content-wrapper" class="">
 				<div id="content" class="carre">
 					<div name="bas" style="background-color:#456BD9;color:white;">
-          <form class="box" action="traitement-inscription.php" method="POST">
-          <h1> Ajouter un utilisateur </h1>
-
-    <label class="titre" for="">identifiant</label>
-        <input type="text" placeholder="entrer l'username" name="id" required><br/>
-
-         <label class="titre" for="">Nom</label>
-        <input type="text" placeholder="entrer le nom" name="nom" required><br/>
-
-        <label class="titre" for="">Prenom</label>
-        <input type="text" placeholder="entrer le prenom" name="prenom" required><br/>
-        <label class="titre" for="">Region</label>
-        <select name="activity" id="pet-select">
-                            <option value="">Veuillez choisir la région</option>
-                          <?php  $region = $con->query("SELECT * FROM region");
-                          
-                          while ($dep = $region->fetch()){?>
-                            <option value="<?php echo $dep['departement'];?>"><?php echo $dep['departement'];?></option>
-                        <?php }?>
-                            </select><br>
-
-        <label class="titre" for="">Module</label>
-        <select name="type" id="">
-          <option value="">Veuillez choisir le module</option>
-          <option value="visiteur">visiteur</option>
-          <option value="delegue">delegue</option>
-          <option value="responsable">responsable</option>
-        </select><br>
-
-        <label class="titre" for="">Mot de passe</label>
-        <input type="password" placeholder="entrer le mot de passe " name="pw" required><br>
-       
-    <input type="submit" name="submit" 
-  value="S'inscrire" class="box-button" />
-</form>
+						<form name="compterendu" method="post" action="traitement_new_med.php?id=<?php echo $data; ?>">
+							<h1> Ajouter un médicament </h1>
+							<label class="titre">Nom commercial :</label><input type="text" name="nom_com"  required /></br>
+							<label class="titre">Famille médicament :</label><input type="text"  name="fam_med" class="zone"required/></br>
+							<label class="titre">Composition :</label><input type="text" name="compo_med" class="zone"required /></br>
+                            <label class="titre">Effet indésirable :</label><input type="text" name="effet" required></br>                            
+                            <label class="titre">Contre indication : </label><input type="text"  name="contre_ind" class="zone" required ></input></br>
+                            <label class="titre">Prix : </label><input type="text"  name="prix" class="zone" required ></input></br>
+							<label class="titre"></label><div class="zone"><input type="submit" id='submit'></input></br>
+						</form>
 					</div>
 				</div>
 			</div>

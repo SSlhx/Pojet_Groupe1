@@ -9,6 +9,9 @@ $users = $con->query("SELECT * FROM users where username = '$user' ");
 $donnees = $users->fetch();
 $type = $donnees['type'];
 $data = $donnees['id_User'];
+
+$id_form = $_GET['id_form'];
+
 if(isset( $_SESSION['id'])){  
 ?>
 
@@ -44,82 +47,63 @@ if(isset( $_SESSION['id'])){
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-    <div class="sidebar-brand-icon rotate-n-15">
-        <i class="fas fa-laugh-wink"></i>
-    </div>
-    <div class="sidebar-brand-text mx-3">GSB Admin
-    </div>
-</a>
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">GSB Admin
+                </div>
+            </a>
 
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Dashboard -->
-<li class="nav-item active">
-    <a class="nav-link" href="index.php?id=<?php echo $data; ?>">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Accueil</span></a>
-</li>
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="index.php?id=<?php echo $data; ?>">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Accueil</span></a>
+            </li>
 
-<!-- Divider -->
-<hr class="sidebar-divider">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-<!-- Heading -->
-<div class="sidebar-heading">
-    Menu
-</div>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Menu
+            </div>
+       
 
+            <?php 
+                if ($type == "visiteur" or $type == "delegue"){?>
+                    <li class="nav-item">
+                    <a class="nav-link collapsed" href="compterendu.php?id=<?php echo $data; ?>">
+                        <span>Ajoutez un compte rendue</span>
+                    </a>
+                </li>            
+    
+               
+               <?php } if ($type == "responsable" or  $type == "delegue"){?>
+                    <li class="nav-item">
+                    <a class="nav-link collapsed" href="activity_visiteur.php?id=<?php echo $data; ?>">
+                        <span>Activité visiteur</span>
+                    </a>
+                </li>            
+               <?php }?>
+               <li class="nav-item">
+                        <a class="nav-link collapsed" href="page_practicien.php?id=<?php echo $data; ?>">
+                            <span>Practicien</span>
+                        </a>
+                    </li>
 
-<?php
-if ($type == "visiteur" or $type == "delegue") { ?>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="compterendu.php?id=<?php echo $data; ?>">
-            <span>Ajoutez un compte rendue</span>
-        </a>
-    </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="medicament.php?id=<?php echo $data; ?>">
+                            <span>Medicament</span>
+                        </a>
+                    </li>
 
-
-<?php }
-
-if ($type == "responsable" or  $type == "delegue") { ?>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="activity_visiteur.php?id=<?php echo $data; ?>">
-            <span>Activité visiteur</span>
-        </a>
-    </li>
-<?php } ?>
-<li class="nav-item">
-    <a class="nav-link collapsed" href="page_practicien.php?id=<?php echo $data; ?>">
-        <span>Practicien</span>
-    </a>
-</li>
-
-<li class="nav-item">
-    <a class="nav-link collapsed" href="medicament.php?id=<?php echo $data; ?>">
-        <span>Medicament</span>
-    </a>
-</li><?php
- if ($type == "responsable") { ?>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="inscription.php?id=<?php echo $data; ?>">
-            <span>Ajouer un utilisateur</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="new_medicament.php?id=<?php echo $data; ?>">
-            <span>Ajouer un médicament</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="new_praticien.php?id=<?php echo $data; ?>">
-            <span>Ajouer un praticien</span>
-        </a>
-    </li>
-
-<?php } ?>
-</ul>
+        </ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -141,8 +125,20 @@ if ($type == "responsable" or  $type == "delegue") { ?>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -158,8 +154,11 @@ if ($type == "responsable" or  $type == "delegue") { ?>
 			<div id="content-wrapper" class="">
 				<div id="content" class="carre">
 					<div name="bas" style="background-color:#456BD9;color:white;">
-						<form name="compterendu" method="post" action="traitement_CR.php?id=<?php echo $data; ?>">
-							<h1> Rapport de visite </h1>
+						<form name="compterendu" method="post" action="traitement_modif_CR.php?id_form=<?php echo $id_form; ?>">
+                       <?php $reponse = $con->query("SELECT * FROM form_visite WHERE id_form = $id_form ");     //filtrer l’ordre des résultats inverse l'ordre grace a DESC
+                        while ($donnees = $reponse->fetch()){
+                        ?>
+                        <h1> Modification rapport de visite </h1>
 							<label class="titre">PRATICIEN :</label>
                             <select name="PRAT_NOM" id="pet-select">
                                             <option value="">Veuillez choisir le practicien</option>
@@ -177,7 +176,7 @@ if ($type == "responsable" or  $type == "delegue") { ?>
 															<option value="SOL">Sollicitation praticien</option>
 															<option value="AUT">Autre</option>
 														</select></br>
-							<label class="titre">BILAN DE VISITE :</label><textarea rows="5" cols="50" name="RAP_BILAN" class="zone"required ></textarea></br>
+							<label class="titre">BILAN DE VISITE :</label><textarea rows="5" cols="50" name="RAP_BILAN" class="zone"required ><?php echo $donnees['bilan']; ?></textarea></br>
                             <label class="titre">MEDICAMENT :</label>
                             <select name="MED_NOM" id="pet-select" multiple>
                                 
@@ -186,9 +185,11 @@ if ($type == "responsable" or  $type == "delegue") { ?>
                                             while ($data = $nom->fetch()) { ?>
                                                 <option value="<?php echo $data['nom_commercial']; ?>"><?php echo $data['nom_commercial']; ?></option>
                                             <?php } ?>
-                                        </select></br>                            <label class="titre">AVIS DU CONSULTANT : </label><textarea rows="5" cols="50" name="AVIS_VISIT" class="zone" required ></textarea></br>
+                                        </select></br>                            <label class="titre">AVIS DU CONSULTANT : </label><textarea rows="5" cols="50" name="AVIS_VISIT" class="zone" value="Contenu" required ><?php echo $donnees['avis_visiteur']; ?></textarea></br>
 							<label class="titre"></label><div class="zone"><input type="submit" id='submit'></input></br>
-						</form>
+						
+                        <?php } ?>
+                        </form>
 					</div>
 				</div>
 			</div>

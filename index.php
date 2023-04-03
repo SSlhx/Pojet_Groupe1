@@ -43,61 +43,83 @@ if(isset( $_SESSION['id'])){
     
             <!-- Sidebar -->
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    
-                <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-                    <div class="sidebar-brand-icon rotate-n-15">
-                        <i class="fas fa-laugh-wink"></i>
-                    </div>
-                    <div class="sidebar-brand-text mx-3">GSB Admin
-                    </div>
-                </a>
-    
-                <!-- Divider -->
-                <hr class="sidebar-divider my-0">
 
-                <!-- Nav Item - Dashboard -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.php">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Accueil</span></a>
-                </li>
-    
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-    
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Menu
-                </div>
-                <?php 
-                if ($type == "visiteur" or  $type == "delegue"){?>
-                    <li class="nav-item">
-                    <a class="nav-link collapsed" href="compterendu.php?id=<?php echo $data; ?>">
-                        <span>Ajoutez un compte rendue</span>
+                    <!-- Sidebar - Brand -->
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+                        <div class="sidebar-brand-icon rotate-n-15">
+                            <i class="fas fa-laugh-wink"></i>
+                        </div>
+                        <div class="sidebar-brand-text mx-3">GSB Admin
+                        </div>
                     </a>
-                </li>            
-               <?php }
-               if ($type == "responsable" or  $type == "delegue"){?>
-                    <li class="nav-item">
-                    <a class="nav-link collapsed" href="activity_visiteur.php?id=<?php echo $data; ?>">
-                        <span>Activité visiteur</span>
-                    </a>
-                </li>            
-               <?php }?>
-               <li class="nav-item">
-                    <a class="nav-link collapsed" href="page_practicien.php?id=<?php echo $data; ?>">
-                        <span>Practicien</span>
-                    </a>
-                </li>   
-                
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="medicament.php?id=<?php echo $data; ?>">
-                        <span>Medicament</span>
-                    </a>
-                </li>   
 
-            </ul>
+                    <!-- Divider -->
+                    <hr class="sidebar-divider my-0">
+
+                    <!-- Nav Item - Dashboard -->
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.php?id=<?php echo $data; ?>">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Accueil</span></a>
+                    </li>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Menu
+                    </div>
+
+
+                    <?php
+                    if ($type == "visiteur" or $type == "delegue") { ?>
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="compterendu.php?id=<?php echo $data; ?>">
+                                <span>Ajoutez un compte rendue</span>
+                            </a>
+                        </li>
+
+
+                    <?php }
+
+                    if ($type == "responsable" or  $type == "delegue") { ?>
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="activity_visiteur.php?id=<?php echo $data; ?>">
+                                <span>Activité visiteur</span>
+                            </a>
+                        </li>
+                    <?php } ?>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="page_practicien.php?id=<?php echo $data; ?>">
+                            <span>Practicien</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="medicament.php?id=<?php echo $data; ?>">
+                            <span>Medicament</span>
+                        </a>
+                    </li><?php
+                    if ($type == "responsable") { ?>
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="inscription.php?id=<?php echo $data; ?>">
+                                <span>Ajouer un utilisateur</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="new_medicament.php?id=<?php echo $data; ?>">
+                                <span>Ajouer un médicament</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="new_praticien.php?id=<?php echo $data; ?>">
+                                <span>Ajouer un praticien</span>
+                            </a>
+                        </li>
+
+                    <?php } ?>
+                </ul>
             <!-- End of Sidebar -->
     
             <!-- Content Wrapper -->
@@ -108,40 +130,28 @@ if(isset( $_SESSION['id'])){
     
                     <!-- Topbar -->
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                        <!-- Topbar Navbar -->
-                        <ul class="navbar-nav ml-auto">
-                            <!-- Nav Item - User Information -->
-                            <li class="nav-item dropdown no-arrow">
-                                <a class="nav-link dropdown-toggle" href="logout.php" id="userDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user;?></span>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user;?></span>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
                                 </a>
-                                <!-- Dropdown - User Information -->
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                    aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Settings
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Activity Log
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
-                                    </a>
-                                </div>
-                            </li>
-    
-                        </ul>
-    
-                    </nav>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
                     <!-- End of Topbar -->
     
                     <!-- Begin Page Content -->
@@ -194,6 +204,7 @@ if(isset( $_SESSION['id'])){
                                                                 <td>'. htmlspecialchars($donnees['bilan']).'</td>
                                                                 <td>'.htmlspecialchars($donnees['medicament']).'</td>
                                                                 <td>'.htmlspecialchars($donnees['avis_visiteur']).'</td>
+                                                                <td><a href="modif_CR.php?id_form='.htmlspecialchars($donnees['id_form']).'">modifier</a></td>
                                                             </tr>';}
                                             $reponse->closeCursor(); //fini la série d'un fletch
                                                 echo

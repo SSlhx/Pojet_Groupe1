@@ -100,7 +100,25 @@ if (isset($_SESSION['id'])) {
                         <a class="nav-link collapsed" href="medicament.php?id=<?php echo $data; ?>">
                             <span>Medicament</span>
                         </a>
+                    </li><?php
+                   if ($type == "responsable") { ?>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="inscription.php?id=<?php echo $data; ?>">
+                            <span>Ajouer un utilisateur</span>
+                        </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="new_medicament.php?id=<?php echo $data; ?>">
+                            <span>Ajouer un médicament</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="new_praticien.php?id=<?php echo $data; ?>">
+                            <span>Ajouer un praticien</span>
+                        </a>
+                    </li>
+
+                <?php } ?>
                 </ul>
                 <!-- End of Sidebar -->
 
@@ -112,38 +130,28 @@ if (isset($_SESSION['id'])) {
 
                         <!-- Topbar -->
                         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                            <!-- Topbar Navbar -->
-                            <ul class="navbar-nav ml-auto">
-                                <!-- Nav Item - User Information -->
-                                <li class="nav-item dropdown no-arrow">
-                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user; ?></span>
-                                    </a>
-                                    <!-- Dropdown - User Information -->
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                        <a class="dropdown-item" href="#">
-                                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            Profile
-                                        </a>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            Settings
-                                        </a>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            Activity Log
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                            Logout
-                                        </a>
-                                    </div>
-                                </li>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user;?></span>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
 
-                            </ul>
+                    </ul>
 
-                        </nav>
+                </nav>
                         <!-- End of Topbar -->
 
                         <!-- Begin Page Content -->
@@ -175,8 +183,8 @@ if (isset($_SESSION['id'])) {
                                             <h2 for="">Famille :</h2><input type="text" name="nom_champ" id="id_champ" value="<?php echo $donnees['famille_medicament']?>" readonly="readonly"><br>
                                             <h2 for="">Composition :</h2><input type="text" name="nom_champ" id="id_champ" value="<?php echo $donnees['composition']?>" readonly="readonly"><br>
                                             <h2 for="">Effet indesirable :</h2><input type="text" name="nom_champ" id="id_champ" value="<?php echo $donnees['effet_indesirable']?>" readonly="readonly"><br>
-                                            <h2 for="">Contre-Indication :</h2><input type="text" name="nom_champ" id="id_champ" value="<?php echo $donnees['contre-indication']?>" readonly="readonly"><br>
-                                            <h2c for="">Prix échantillon :</h2c><input type="text" name="nom_champ" id="id_champ" value="<?php echo $donnees['prix_echantillon']?>" readonly="readonly"><br>
+                                            <h2 for="">Contre-Indication :</h2><input type="text" name="nom_champ" id="id_champ" value="<?php echo $donnees['contre_indication']?>" readonly="readonly"><br>
+                                            <h2 for="">Prix échantillon :</h2><input type="text" name="nom_champ" id="id_champ" value="<?php echo $donnees['prix_echantillon']?>" readonly="readonly"><br>
                                             </div>
                                             <?php
                                         }

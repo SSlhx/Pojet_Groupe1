@@ -16,16 +16,15 @@ if (isset($_REQUEST['id'], $_REQUEST['pw'])){
   $prenom = mysqli_real_escape_string($db, $prenom);
   $departement = stripslashes($_REQUEST['activity']);
   $departement = mysqli_real_escape_string($db, $departement);
-  
+  $type = stripslashes($_REQUEST['type']);
+  $type = mysqli_real_escape_string($db, $type);
  
 $query = $con->prepare("INSERT into `users` (username, type, password, nom, prenom, departement)
-VALUES ('$id',  'visiteur', '".hash('sha256', $pw)."', '$nom', '$prenom', '$departement')");
+VALUES ('$id',  '$type', '".hash('sha256', $pw)."', '$nom', '$prenom', '$departement')");
   $query->execute();
 
-       echo "<div class='sucess'>
-             <h3>Vous êtes inscrit avec succès.</h3>
-             <p>Cliquez ici pour vous <a href='login.php'>connecter</a></p>
-       </div>";
+  header('location: index.php');
+
     
     
 }
