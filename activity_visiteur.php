@@ -11,8 +11,7 @@ $type = $donnees['type'];
 $data = $donnees['id_User'];
 
 
-$count = $con->query('SELECT COUNT(id_form) AS form_total FROM `form_visite` GROUP BY id_User ;');
-$count->execute();
+
 
 if(isset( $_SESSION['id'])){  
 ?>
@@ -124,6 +123,12 @@ if(isset( $_SESSION['id'])){
                         </li>
 
                     <?php } ?>
+                     <li class="nav-item">
+                            <a class="nav-link collapsed" href="logout.php">
+                                <span>Se déconnecter</span>
+                            </a>
+                        </li>
+                    
                 </ul>
         <!-- End of Sidebar -->
 
@@ -139,18 +144,14 @@ if(isset( $_SESSION['id'])){
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user;?></span>
-                            </a>
+                            
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
+                               
                             </div>
                         </li>
 
@@ -194,17 +195,18 @@ if(isset( $_SESSION['id'])){
                                                 </tr>
                                             </thead>
                                             <tbody>';
-                                $visite = $con->query('SELECT * FROM users  WHERE departement = "'.$select.'" '); 
+                                $visite = $con->query('SELECT * FROM users  WHERE departement = "'.$select.'" and type in ("visiteur", "delegue")'); 
                                 $visite->execute();
-                               
-                                while ($donnees = $visite->fetch()){
-                                    while ($count_tot = $count->fetch()){
+                                $count = $con->query('SELECT u.id_User, u.username AS userID, u.nom, u.prenom, COUNT(id_form) AS form_total FROM `form_visite` AS f INNER JOIN users AS u on f.id_User = u.id_User and u.type IN ("visiteur", "delegue") WHERE departement = "'.$select.'" and type in ("visiteur", "delegue") GROUP BY u.id_User;');
+                                $count->execute();
+                                while ($count_tot = $count->fetch()){
+                                 
                                     echo
                                                 '<tr>
-                                                    <td>'.  htmlspecialchars($donnees['nom']) .'</td>
-                                                    <td>' . htmlspecialchars($donnees['prenom']) . '</td>
+                                                    <td>'.  htmlspecialchars($count_tot['nom']) .'</td>
+                                                    <td>' . htmlspecialchars($count_tot['prenom']) . '</td>
                                                     <td>' . htmlspecialchars($count_tot['form_total']) . '</td>
-                                                </tr>';}}
+                                                </tr>';}
                                 $visite->closeCursor(); //fini la série d'un fletch
                                     echo
                                             '</tbody>
@@ -247,7 +249,7 @@ if(isset( $_SESSION['id'])){
 
 <?php }}
 else{
-   
+    
     session_destroy();
                       header("location:login.php");
                       exit;

@@ -185,8 +185,10 @@ if (isset($_SESSION['id'])) {
                                             <h2 for="">Effet indesirable :</h2><input type="text" name="nom_champ" id="id_champ" value="<?php echo $donnees['effet_indesirable']?>" readonly="readonly"><br>
                                             <h2 for="">Contre-Indication :</h2><input type="text" name="nom_champ" id="id_champ" value="<?php echo $donnees['contre_indication']?>" readonly="readonly"><br>
                                             <h2 for="">Prix échantillon :</h2><input type="text" name="nom_champ" id="id_champ" value="<?php echo $donnees['prix_echantillon']?>" readonly="readonly"><br>
+                                           
                                             </div>
                                             <?php
+                                           
                                         }
                                         $practitiens->closeCursor(); //fini la série d'un fletch
                                            //ecrit ce qu'on a récuperer
